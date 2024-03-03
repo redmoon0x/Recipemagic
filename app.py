@@ -177,13 +177,19 @@ def login():
             flash("Login successful!", 'success')
             return redirect(url_for('home'))
         except auth.InvalidEmailError:
-            flash("Invalid email address.", 'error')
+            # Handle invalid email format
+            flash("Invalid email address format.", 'error')
+        except auth.EmailNotFoundError:
+            # Handle non-existent email
+            flash("The email address you entered does not exist in our system. Please create an account or check your email address for typos.", 'error')
         except auth.WrongPasswordError:
+            # Handle incorrect password
             flash("Incorrect password.", 'error')
         except Exception as e:  # Handle other potential errors
             flash(f"An error occurred: {e}", 'error')
 
     return render_template('login.html')
+
 
 
 def generate_recipe(prompt_parts):
