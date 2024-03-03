@@ -1,6 +1,6 @@
 import requests
 from flask import Flask, render_template, request, flash, session, redirect, url_for, jsonify
-import pandas as pd
+
 import os
 import firebase_admin
 from firebase_admin import auth, db, credentials
