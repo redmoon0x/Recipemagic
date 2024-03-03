@@ -180,6 +180,8 @@ def login():
             flash("Invalid email address.", 'error')
         except auth.WrongPasswordError:
             flash("Incorrect password.", 'error')
+        except auth.UserNotFoundError:
+            flash("User not found. Please register first.", 'error')
         except Exception as e:  # Handle other potential errors
             flash(f"An error occurred: {e}", 'error')
 
