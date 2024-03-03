@@ -2,7 +2,7 @@
 Werkzeug==2.2.3
 requests==2.28.1
 firebase==4.0.1
-functools
+
 google-generativeai
 
 beautifulsoup4==4.11.1
