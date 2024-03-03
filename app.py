@@ -2,8 +2,8 @@ import requests
 from flask import Flask, render_template, request, flash, session, redirect, url_for, jsonify
 
 import os
-import firebase
-from firebase import auth, db, credentials
+import firebase_admin
+from firebase_admin import auth, db, credentials
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 import google.generativeai as genai
