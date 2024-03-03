@@ -173,10 +173,11 @@ def login():
         try:
             # Check if the email exists in Firebase
             user = auth.get_user_by_email(email)
+
             # Email exists, attempt to sign in
             try:
                 user = auth.sign_in_with_email_and_password(email, password)
-                session['user'] = user['localId']
+                session['user'] = user['localId']  # Store user ID in session
                 flash("Login successful!", 'success')
                 return redirect(url_for('home'))
             except firebase_admin.auth.FirebaseAuthError as e:
@@ -197,6 +198,7 @@ def login():
             flash(f"An error occurred: {e}", 'error')
 
     return render_template('login.html')
+
 
 
 
