@@ -265,6 +265,6 @@ def logout():
     return redirect(url_for('home'))
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     # Run the app
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
