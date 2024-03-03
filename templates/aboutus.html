@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About RecipeMagic</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
+    * {
+      font-family: 'Oswald', sans-serif;
+    }
+    html {
+      animation: fadeIn 1s ease-in;
+      animation-fill-mode: forwards;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+    }
+    h1, h2, h3 {
+      color: #fff;
+      text-align: center;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #060606;
+    }
+    .card {
+      margin-bottom: 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card-header {
+      background-color: #007bff;
+      color: #000000;
+      border-radius: 8px 8px 0 0;
+    }
+    .card-body {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 0 0 8px 8px;
+      padding: 20px;
+    }
+    .team-member {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+    .team-member h3 {
+      color: #000000;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .team-member p {
+      margin: 0;
+      color: #050505;
+    }
+    .team-member i {
+      margin-right: 5px;
+      border-color: #fff;
+      border: 2px solid;
+      border-radius: 50%;
+      padding: 5px;
+      font-size: 16px;
+      transition: transform 0.3s ease-in-out;
+    }
+    .team-member i:hover {
+      transform: rotate(360deg);
+    }
+    li {
+      color: #000000;
+    }
+    footer {
+      /* Footer always at bottom */
+      margin-top: auto;
+    }
+    .navbar .navbar-nav .nav-item a {
+      padding: 25px;
+    }
+    .navbar .navbar-nav .nav-but {
+      padding: 10px;
+    }
+    .navbar .navbar-nav .nav-item a:hover {
+      color: green;
+    }
+    .col-lg-3 {
+      margin: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="icon-link icon-link-hover" href="#" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" ><img   class="bi"  src="{{ url_for('static', filename='image/logo.png') }}" alt="Logo" style="height: 70px; width: 70px;"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/contactus"><i class="fas fa-phone"></i> Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/aboutus"><i class="fas fa-info-circle"></i> About</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          {% if 'user' in session %}
+          <li class="nav-but">
+            <a class="btn btn-outline-light" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-but">
+            <a class="btn btn-outline-light" href="{{ url_for('signup') }}"><i class="fas fa-user-plus"></i> SignUp</a>
+          </li>
+          <li class="nav-but">
+            <a class="btn btn-outline-light" href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <h1><i class="fas fa-utensils"></i> About RecipeMagic</h1>
+    <div class="card">
+      <div class="card-header">
+        <h2><i class="fas fa-cogs"></i> How it Works</h2>
+      </div>
+      <div class="card-body">
+        <p>Using the power of generative AI from Google, RecipeMagic allows you to search for recipes by food name or ingredients. Here's how:</p>
+        <ul>
+          <li><i class="fas fa-search"></i> <strong>Search by Food Name:</strong> Simply enter the name of the dish you're craving, and RecipeMagic will find the perfect recipes for you.</li>
+          <li><i class="fas fa-list"></i> <strong>Search by Ingredients:</strong> Have some ingredients on hand but not sure what to make? Enter them into RecipeMagic, and we'll suggest creative recipes based on what you have.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2><i class="fas fa-laptop-code"></i> Technology</h2>
+      </div>
+      <div class="card-body">
+        <p>RecipeMagic leverages cutting-edge technologies to deliver a seamless experience:</p>
+        <ul>
+          <li><i class="fas fa-robot"></i> <strong>Generative AI:</strong> Our AI-powered system, developed with Google's technology, analyzes millions of recipes to provide you with personalized recommendations.</li>
+          <li><i class="fab fa-html5"></i> <strong>HTML5 & CSS3:</strong> Modern web standards ensure a smooth and responsive user interface.</li>
+          <li><i class="fab fa-bootstrap"></i> <strong>Bootstrap:</strong> We use Bootstrap for our frontend design, making RecipeMagic accessible on any device.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2><i class="fas fa-users"></i> Meet the Team</h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="team-member">
+              <h3><i class="fas fa-user"></i> Pranam Sir</h3>
+              <p><i class="fas fa-chalkboard-teacher"></i> Mentor</p>
+              <p>Pranam Sir provided mentorship and guidance throughout the development of RecipeMagic.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="team-member">
+              <h3><i class="fas fa-user"></i> Darshan</h3>
+              <p><i class="fas fa-tools"></i> Backend Developer</p>
+              <p>Darshan played a crucial role in the backend development and support of RecipeMagic.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="team-member">
+              <h3><i class="fas fa-user"></i> Keerthana</h3>
+              <p><i class="fas fa-paint-brush"></i> Frontend Developer</p>
+              <p>Keerthana contributed to the frontend development tasks for RecipeMagic.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="team-member">
+              <h3><i class="fas fa-user"></i> Shilpa</h3>
+              <p><i class="fas fa-paint-brush"></i> Frontend Developer</p>
+              <p>Shilpa was involved in the frontend development process for RecipeMagic.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="team-member">
+              <h3><i class="fas fa-user"></i> Srishti</h3>
+              <p><i class="fas fa-paint-brush"></i> Frontend Developer</p>
+              <p>Srishti contributed to the frontend development tasks for RecipeMagic.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="team-member">
+              <h3><i class="fas fa-user"></i> Deviprasad Shetty</h3>
+              <p><i class="fas fa-tools"></i> AI & Backend Developer</p>
+              <p>As a co-founder, Deviprasad spearheaded the AI and backend development of RecipeMagic.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="bg-dark text-white py-3">
+    <div class=" text-center">
+      <p>&copy; 2023 RecipeMagic. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS and Font Awesome Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
+</body>
+</html>

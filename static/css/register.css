@@ -1,0 +1,45 @@
+body{
+    background-image: url(/static/image/ideogram\ \(1\).jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+    
+   
+  }
+  footer {
+    /* Footer always at bottom */
+    margin-top: auto;
+  }
+  
+
+.navbar .navbar-nav .nav-item a{
+    padding: 25px;
+  }
+  .navbar .navbar-nav .nav-but{
+    padding: 10px;
+  }
+  .navbar .navbar-nav .nav-item a:hover{
+    color: green;
+  }
+  body::before {
+   content: "";
+   position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+     height: 100%;
+    background-color: rgba(48, 59, 59, 0.5); 
+     z-index: -1; 
+  }
+  input[type="email"],
+  input[type="text"],
+  input[type="username"],
+  input[type="password"] {
+      background-color: rgba(255, 255, 255, 0.5);
+      border: none;
+      border-radius: 20px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
