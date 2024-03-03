@@ -9,7 +9,7 @@ from functools import wraps
 import google.generativeai as genai
 from bs4 import BeautifulSoup
 
-app = Flask(__name__)
+app = Flask(_name_)
 app.secret_key = 'bytecrafters'
 
 
@@ -104,7 +104,7 @@ def parse_generated_recipe(generated_recipe_text):
     tips = ""
 
     # Remove extra whitespace and special characters
-    generated_recipe_text = generated_recipe_text.replace("**", "").replace("\n\n", "\n").strip()
+    generated_recipe_text = generated_recipe_text.replace("", "").replace("\n\n", "\n").strip()
 
     # Split the generated recipe text into sections based on the keywords
     sections = generated_recipe_text.split("Instructions:")
@@ -180,8 +180,6 @@ def login():
             flash("Invalid email address.", 'error')
         except auth.WrongPasswordError:
             flash("Incorrect password.", 'error')
-        except auth.UserNotFoundError:
-            flash("User not found. Please register first.", 'error')
         except Exception as e:  # Handle other potential errors
             flash(f"An error occurred: {e}", 'error')
 
@@ -261,7 +259,6 @@ def logout():
     return redirect(url_for('home'))
 
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     # Run the app
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
-
