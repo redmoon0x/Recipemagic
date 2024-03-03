@@ -9,9 +9,8 @@ from functools import wraps
 import google.generativeai as genai
 from bs4 import BeautifulSoup
 
-app = Flask(_name_)
+app = Flask(__name__)
 app.secret_key = 'bytecrafters'
-
 
 # Firebase configuration
 firebaseConfig = {
