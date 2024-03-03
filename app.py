@@ -171,20 +171,24 @@ def login():
         password = request.form['password']
 
         try:
-            user = auth.sign_in_with_email_and_password(email, password)
-            session['user'] = user.uid
-            flash("Login successful!", 'success')
-            return redirect(url_for('home'))
-        except auth.InvalidEmailError:
-            # Handle invalid email format
-            flash("Invalid email address format.", 'error')
-        except auth.EmailNotFoundError:
-            # Handle non-existent email
-            flash("The email address you entered does not exist in our system. Please create an account or check your email address for typos.", 'error')
-        except auth.WrongPasswordError:
-            # Handle incorrect password
-            flash("Incorrect password.", 'error')
-        except Exception as e:  # Handle other potential errors
+            # Check if the email exists in Firebase
+            user = auth.get_user_by_email(email)
+            # Email exists, attempt to sign in
+            try:
+                user = auth.sign_in_with_email_and_password(email, password)
+                session['user'] = user['localId']  # Store user ID in session
+                flash("Login successful!", 'success')
+                return redirect(url_for('home'))
+            except auth.WrongPasswordError:
+                # Handle incorrect password
+                flash("Incorrect password.", 'error')
+            except Exception as e:  # Handle other potential errors
+                flash(f"An error occurred: {e}", 'error')
+        except auth.UserNotFoundError:
+            # Handle user not found
+            flash("The email address you entered was not found. Please check your email address or create an account.", 'error')
+        except Exception as e:
+            # Handle other errors
             flash(f"An error occurred: {e}", 'error')
 
     return render_template('login.html')
